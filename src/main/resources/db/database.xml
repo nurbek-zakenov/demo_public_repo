@@ -1,0 +1,43 @@
+
+<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+    <property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+    <property name="url" value="${center.connectionURL}"/>
+    <property name="username" value="${userName}"/>
+    <property name="password" value="${password}"/>
+</bean>
+
+<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+    <property name="basePackage" value="com.xxx.dao.center"/>
+    <property name="sqlSessionFactoryBeanName" value="cneterSqlSessionFactory"/>
+</bean>
+
+<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" name="cneterSqlSessionFactory">
+    <property name="dataSource" ref="dataSource"></property>
+    <property name="mapperLocations" value="classpath*:mapperConfig/center/*.xml"/>
+    <property name="configLocation" value="classpath:mybatis-config.xml"/>
+</bean>
+
+<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    <property name="dataSource" ref="dataSource"/>
+</bean>
+<tx:annotation-driven transaction-manager="transactionManager"/>
+        <!--center db end-->
+        <!--exdb-->
+<bean id="dataSourceEx" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+    <property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+    <property name="url" value="${ex.connectionURL}"/>
+    <property name="username"  value="${userName}"/>
+    <property name="password" value="${password}"/>
+</bean>
+<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+    <property name="basePackage" value="com.xxx.dao.ex"/>
+    <property name="sqlSessionFactoryBeanName" value="exSqlSessionFactory"/>
+</bean>
+<bean id="sqlSessionFactoryEx" class="org.mybatis.spring.SqlSessionFactoryBean" name="exSqlSessionFactory">
+    <property name="dataSource" ref="dataSourceEx"></property>
+    <property name="mapperLocations" value="classpath*:mapperConfig/ex/*.xml"/>
+    <property name="configLocation" value="classpath:mybatis-config.xml"/>
+</bean>
+<bean id="transactionManagerEx" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    <property name="dataSource" ref="dataSourceEx"/>
+</bean>

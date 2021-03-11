@@ -1,0 +1,21 @@
+databaseChangeLog:
+    - changeSet:
+        id: 1
+        author: nurbek
+        changes:
+          - sqlFile:
+              path: create_basic_tables.sql
+              relativeToChangelogFile: true
+              splitStatements: false
+    - changeSet:
+          id: 2
+          author: nurolla
+          changes:
+              - sqlFile:
+                    path: insert_users.sql
+                    relativeToChangelogFile: true
+                    splitStatements: false
+
+
+
+

@@ -1,0 +1,44 @@
+server:
+  port: 8090
+  servlet:
+    context-path: /ap/v1/
+spring:
+  servlet.multipart:
+    enabled: true
+    max-file-size: 20MB
+    max-request-size: 20MB
+#  datasource:
+#    url: jdbc:postgresql://localhost:5432/ias_db
+#    username: postgres
+#    password: 1
+#    driverClassName: org.postgresql.Driver
+#    driver-class-name: org.postgresql.Driver
+#    type: com.zaxxer.hikari.HikariDataSource
+#    max-active: 100
+#    hikari:
+#      minimumIdle: 5
+#      connection-test-query: SELECT 1
+#      idleTimeout: 30000
+#      maximumPoolSize: 20
+#      connectionTimeout: 30000
+#      maxLifetime: 2000000
+#      poolName: SpringBootJPAHikariCP
+  jackson:
+    default-property-inclusion: non_null
+    date-format: yyyy-mm-dd
+    serialization:
+      write_dates_as_timestamps: false
+  liquibase:
+    change-log: classpath:/db/liquibase-changelog.yml
+logging:
+  level:
+    root: info
+  file: ias.log
+bezkoder:
+  app:
+    jwtExpirationMs: 86400000
+    jwtSecret: bezKoderSecretKey
+file:
+  upload-dir: /home/nurbek/folder
+
+
